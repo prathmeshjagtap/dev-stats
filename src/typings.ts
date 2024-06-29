@@ -7,26 +7,26 @@ export type DataNameType =
 	| "Incident Alerts"
 	| "Incident Resolved";
 
-export interface TotalActivityType {
-	name: DataNameType;
-	value: String;
-}
-
 export interface DayWiseActivityItemsType {
-	count: String;
+	count: string;
 	label: DataNameType;
-	fillColor: String;
+	fillColor: string;
 }
 
 export interface DayWiseActtivityType {
 	date: Date;
-	items: [];
+	items: DayWiseActivityItemsType[];
+}
+
+export interface TotalActivityType {
+	name: DataNameType;
+	value: string;
 }
 
 export interface ActiveDaysType {
 	days: Number;
 	isBurnOut: boolean;
-	insight: Array<String>;
+	insight: Array<string>;
 }
 
 export interface DevelopersDataType {
@@ -37,12 +37,14 @@ export interface DevelopersDataType {
 }
 
 export interface DeveloperDetailsType {
-	displayName: string;
-	displayEmail: string;
-	numberofOpenPrs: string;
-	numberofCommits: string;
-	numberofReviewedPrs: string;
-	numberofCommnets: string;
-	numberofIncidentAlerts: string;
-	numberofIncidentResolved: string;
+	name: string;
+	email: string;
+	totalfOpenPrs: string;
+	totalMergedPrs: string;
+	totalCommits: string;
+	totalReviewedPrs: string;
+	totalCommnets: string;
+	totalIncidentAlerts: string;
+	totalIncidentResolved: string;
+	totalScore?: string;
 }

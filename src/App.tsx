@@ -8,18 +8,16 @@ import {
 	TableContainer,
 	Tbody,
 	Td,
-	Tfoot,
 	Th,
 	Thead,
 	Tr,
 } from "@chakra-ui/react";
-import { DeveloperDetailsType, DevelopersDataType } from "./typings";
+import { DevelopersDataType } from "./typings";
+import { getDeveloperDetails } from "./helpers/getDeveloperDetails";
 
 function App() {
 	const [isLoading, setisLoading] = useState(true);
-	const [developersData, setDevelopersData] = useState<DevelopersDataType>();
-	const [developerDetails, setDeveloperDetails] =
-		useState<DeveloperDetailsType[]>();
+	const [developersData, setDevelopersData] = useState<DevelopersDataType[]>();
 	const [error, setError] = useState();
 
 	useEffect(() => {
@@ -35,8 +33,14 @@ function App() {
 	}, []);
 
 	if (isLoading) {
-		return <>LOADING</>;
 	}
+
+	if (error) {
+		return <>Soory for the Inconvenience, Currently facing some error</>;
+	}
+
+	const getDevelopersTotalScore =
+		developersData && getDeveloperDetails(developersData);
 
 	return (
 		<>
@@ -47,25 +51,33 @@ function App() {
 					<TableCaption>LeaderBoard</TableCaption>
 					<Thead>
 						<Tr>
+							<Th>Name</Th>
 							<Th>Email</Th>
-							<Th isNumeric>PR Open </Th>
-							<Th isNumeric>PR Merged</Th>
-							<Th isNumeric>Commits</Th>
-							<Th isNumeric>PR Reviewed</Th>
-							<Th isNumeric>PR Comments</Th>
-							<Th isNumeric>Incident Alerts</Th>
-							<Th isNumeric>Incident Resolved</Th>
+							<Th>PR Open </Th>
+							<Th>PR Merged</Th>
+							<Th>Commits</Th>
+							<Th>PR Reviewed</Th>
+							<Th>PR Comments</Th>
+							<Th>Incident Alerts</Th>
+							<Th>Incident Resolved</Th>
+							<Th>Total Score</Th>
 						</Tr>
 					</Thead>
 					<Tbody>
-						{developersData &&
-							developersData?.map((data) => {
+						{getDevelopersTotalScore &&
+							getDevelopersTotalScore?.map((data, key) => {
 								return (
-									<Tr>
+									<Tr key={key}>
 										<Td>{data?.name}</Td>
-										{data?.totalActivity.map((totalActivityData) => {
-											return <Td>{totalActivityData?.value}</Td>;
-										})}
+										<Td>{data?.email}</Td>
+										<Td>{data?.totalfOpenPrs}</Td>
+										<Td>{data?.totalMergedPrs}</Td>
+										<Td>{data?.totalCommits}</Td>
+										<Td>{data?.totalReviewedPrs}</Td>
+										<Td>{data?.totalCommnets}</Td>
+										<Td>{data?.totalIncidentAlerts}</Td>
+										<Td>{data?.totalIncidentResolved}</Td>
+										<Td isNumeric>{data?.totalScore}</Td>
 									</Tr>
 								);
 							})}
