@@ -5,7 +5,7 @@ export type DataNameType =
 	| "PR Reviewed"
 	| "PR Comments"
 	| "Incident Alerts"
-	| "Incident Resolved";
+	| "Incidents Resolved";
 
 export interface DayWiseActivityItemsType {
 	count: string;
@@ -14,8 +14,10 @@ export interface DayWiseActivityItemsType {
 }
 
 export interface DayWiseActtivityType {
-	date: Date;
-	items: DayWiseActivityItemsType[];
+	date: string;
+	items: {
+		children: DayWiseActivityItemsType[];
+	};
 }
 
 export interface TotalActivityType {

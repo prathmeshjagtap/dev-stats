@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Constants } from "../constants";
+import { apiResponseConstants } from "../constants/Constants";
 
 const getData = async () => {
 	try {
@@ -8,13 +8,13 @@ const getData = async () => {
 		);
 		if (response.status === 200) {
 			return {
-				status: Constants.SUCCESS,
+				status: apiResponseConstants.SUCCESS,
 				payload: response.data.data,
 			};
 		}
 	} catch (error) {
 		return {
-			status: Constants.FAILED,
+			status: apiResponseConstants.FAILED,
 			payload: error,
 		};
 	}
