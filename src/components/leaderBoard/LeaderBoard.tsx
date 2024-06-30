@@ -9,12 +9,13 @@ import {
 	Thead,
 	Tr,
 } from "@chakra-ui/react";
-import { DevelopersDataType } from "../../typings";
+import { useNavigate } from "react-router-dom";
 import { getDeveloperDetails } from "../../helpers/getDeveloperDetails";
+import { useDataContext } from "../../context/dataContext";
 
-const LeaderBoard: FC<{ developersData: DevelopersDataType[] | undefined }> = ({
-	developersData,
-}) => {
+const LeaderBoard: FC = () => {
+	const navigate = useNavigate();
+	const developersData = useDataContext();
 	const getDevelopersTotalScore =
 		developersData && getDeveloperDetails(developersData);
 
@@ -41,7 +42,11 @@ const LeaderBoard: FC<{ developersData: DevelopersDataType[] | undefined }> = ({
 							getDevelopersTotalScore?.map((data, key) => {
 								return (
 									<Tr key={key}>
-										<Td>{data?.name}</Td>
+										<Td
+											onClick={() => navigate(`/developerStats/${data?.name}`)}
+										>
+											{data?.name}
+										</Td>
 										<Td>{data?.totalfOpenPrs}</Td>
 										<Td>{data?.totalMergedPrs}</Td>
 										<Td>{data?.totalCommits}</Td>

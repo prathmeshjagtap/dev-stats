@@ -10,9 +10,12 @@ import {
 	Tooltip,
 	Legend,
 } from "chart.js";
-import { DevelopersDataType } from "../typings";
+import { useParams } from "react-router-dom";
 import { dataConstants } from "../constants/Constants";
 import { createLineChartDataSet } from "../helpers/createLineChartDataSet";
+import { useDataContext } from "../context/dataContext";
+import { getCurrentUser } from "../helpers/getCurrentUser";
+import { getLabelsData } from "../helpers/getLabelsData";
 
 ChartJS.register(
 	CategoryScale,
@@ -24,24 +27,14 @@ ChartJS.register(
 	Legend
 );
 
-const LineGraph: FC<{ developersData: DevelopersDataType[] | undefined }> = ({
-	developersData,
-}) => {
-	const getLabelsData = () => {
-		let Labels =
-			developersData &&
-			developersData[0]?.dayWiseActivity?.map(
-				(dayWiseActivity) => dayWiseActivity?.date
-			);
-		return Labels;
-	};
+const LineGraph: FC<{}> = () => {
+	const { user } = useParams();
+	const developersData = useDataContext();
 
 	const getAllDaysDataValues = () => {
-		let allDayDataValues =
-			developersData &&
-			developersData[0]?.dayWiseActivity
-				?.map((singleDayData) => singleDayData?.items?.children)
-				.flat();
+		let allDayDataValues = getCurrentUser(user, developersData)
+			?.dayWiseActivity?.map((singleDayData) => singleDayData?.items?.children)
+			.flat();
 
 		return allDayDataValues;
 	};
@@ -49,7 +42,7 @@ const LineGraph: FC<{ developersData: DevelopersDataType[] | undefined }> = ({
 	const allDaysDataValues = getAllDaysDataValues();
 	const options = {};
 
-	const labels = getLabelsData();
+	const labels = getLabelsData(developersData, user);
 	const data = {
 		labels: labels,
 		datasets: [
