@@ -15,7 +15,7 @@ export const PrimaryButton = styled.button`
 export const SecondaryButton = styled.button`
 	background-color: white;
 	color: #4d4dff;
-	padding: 10px 20px;
+	padding: 4px 4px;
 	border: 1px solid #4d4dff;
 	border-radius: 5px;
 	cursor: pointer;
