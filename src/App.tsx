@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import HomePage from "./pages/homePage/HomePage";
 import DeveloperStats from "./pages/developerStats/DeveloperStats";
-import { AppContainer, MainContainer } from "./App.style";
+import { MainContainer } from "./App.style";
 
 function App() {
 	return (

@@ -30,6 +30,7 @@ function HomePage() {
 		return <>Soory for the Inconvenience, Currently facing some error</>;
 	}
 
+	console.log(developersData);
 	return (
 		<Container>
 			<Header>Developers Stats</Header>

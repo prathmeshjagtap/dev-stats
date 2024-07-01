@@ -10,7 +10,6 @@ import {
 } from "chart.js";
 import { BarChartContainer } from "./barChart.style";
 import { FC } from "react";
-import { ChartData } from "../../pages/developerStats/DeveloperStats";
 
 ChartJS.register(
 	CategoryScale,
