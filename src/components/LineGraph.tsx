@@ -14,8 +14,8 @@ import { useParams } from "react-router-dom";
 import { dataConstants } from "../constants/Constants";
 import { createLineChartDataSet } from "../helpers/createLineChartDataSet";
 import { useDataContext } from "../context/dataContext";
-import { getCurrentUser } from "../helpers/getCurrentUser";
 import { getLabelsData } from "../helpers/getLabelsData";
+import { getAllDaysDataValues } from "../helpers/getAllDaysDataValues";
 
 ChartJS.register(
 	CategoryScale,
@@ -31,15 +31,7 @@ const LineGraph: FC<{}> = () => {
 	const { user } = useParams();
 	const developersData = useDataContext();
 
-	const getAllDaysDataValues = () => {
-		let allDayDataValues = getCurrentUser(user, developersData)
-			?.dayWiseActivity?.map((singleDayData) => singleDayData?.items?.children)
-			.flat();
-
-		return allDayDataValues;
-	};
-
-	const allDaysDataValues = getAllDaysDataValues();
+	const allDaysDataValues = getAllDaysDataValues(user, developersData);
 	const options = {};
 
 	const labels = getLabelsData(developersData, user);

@@ -8,7 +8,12 @@ import {
 	Tooltip,
 	Legend,
 } from "chart.js";
-import { background } from "@chakra-ui/react";
+import { getLabelsData } from "../helpers/getLabelsData";
+import { useDataContext } from "../context/dataContext";
+import { useParams } from "react-router-dom";
+import { createBarChartDataSet } from "../helpers/createBarChartDataSet";
+import { dataConstants } from "../constants/Constants";
+import { getAllDaysDataValues } from "../helpers/getAllDaysDataValues";
 
 ChartJS.register(
 	CategoryScale,
@@ -20,25 +25,41 @@ ChartJS.register(
 );
 
 const BarChart = () => {
+	const { user } = useParams();
+	const developersData = useDataContext();
 	const options = {};
 
-	const labels = ["R", "G", "U", "E", "T"];
+	const labels = getLabelsData(developersData, user);
+	const allDaysDataValues = getAllDaysDataValues(user, developersData);
 	const data = {
 		labels: labels,
 		datasets: [
 			{
-				label: "My First Dataset",
-				data: [65, 59, 80, 81, 56],
-				borderColor: "rgb(75, 192, 192)",
-				background: "yellow",
-				borderWidth: 1,
+				...createBarChartDataSet(allDaysDataValues, dataConstants.PR_OPEN),
 			},
 			{
-				label: "My Second Dataset",
-				data: [61, 59, 50, 71, 26],
-				borderColor: "red",
-				background: "pink",
-				borderWidth: 1,
+				...createBarChartDataSet(allDaysDataValues, dataConstants.PR_MERGED),
+			},
+			{
+				...createBarChartDataSet(allDaysDataValues, dataConstants.COMMITS),
+			},
+			{
+				...createBarChartDataSet(allDaysDataValues, dataConstants.PR_REVIEWED),
+			},
+			{
+				...createBarChartDataSet(allDaysDataValues, dataConstants.PR_COMMNENTS),
+			},
+			{
+				...createBarChartDataSet(
+					allDaysDataValues,
+					dataConstants.INCIDENT_ALERTS
+				),
+			},
+			{
+				...createBarChartDataSet(
+					allDaysDataValues,
+					dataConstants.INCIDENTS_RESOLVED
+				),
 			},
 		],
 	};
