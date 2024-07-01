@@ -11,11 +11,13 @@ import {
 	Legend,
 } from "chart.js";
 import { useParams } from "react-router-dom";
-import { dataConstants } from "../constants/Constants";
-import { createLineChartDataSet } from "../helpers/createLineChartDataSet";
-import { useDataContext } from "../context/dataContext";
-import { getLabelsData } from "../helpers/getLabelsData";
-import { getAllDaysDataValues } from "../helpers/getAllDaysDataValues";
+import { dataConstants } from "../../constants/Constants";
+import { createLineChartDataSet } from "../../helpers/createLineChartDataSet";
+import { useDataContext } from "../../context/dataContext";
+import { getLabelsData } from "../../helpers/getLabelsData";
+import { getAllDaysDataValues } from "../../helpers/getAllDaysDataValues";
+import { LineGraphContainer } from "./lineGraph.style";
+import { PrimaryButton, SecondaryButton } from "../../typography/styles";
 
 ChartJS.register(
 	CategoryScale,
@@ -72,9 +74,9 @@ const LineGraph: FC<{}> = () => {
 	};
 
 	return (
-		<div>
+		<LineGraphContainer>
 			<Line options={options} data={data} />
-		</div>
+		</LineGraphContainer>
 	);
 };
 

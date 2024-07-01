@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
-import LeaderBoard from "../components/leaderBoard/LeaderBoard";
-import LineGraph from "../components/LineGraph";
-import BarChart from "../components/Barchart";
-import { DevelopersDataType } from "../typings";
-import { apiResponseConstants } from "../constants/Constants";
-import { getData } from "../helpers/getData";
+import LeaderBoard from "../../components/leaderBoard/LeaderBoard";
+import { DevelopersDataType } from "../../typings";
+import { apiResponseConstants } from "../../constants/Constants";
+import { getData } from "../../helpers/getData";
+import { Container, Header } from "./homePage.style";
 
 function HomePage() {
 	const [isLoading, setisLoading] = useState(true);
@@ -32,11 +31,10 @@ function HomePage() {
 	}
 
 	return (
-		<>
-			<h2>Dev-Stat Home Page</h2>
-			<h1>LeaderBoard</h1>
+		<Container>
+			<Header>Developers Stats</Header>
 			<LeaderBoard />
-		</>
+		</Container>
 	);
 }
 

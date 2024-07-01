@@ -8,12 +8,13 @@ import {
 	Tooltip,
 	Legend,
 } from "chart.js";
-import { getLabelsData } from "../helpers/getLabelsData";
-import { useDataContext } from "../context/dataContext";
+import { getLabelsData } from "../../helpers/getLabelsData";
+import { useDataContext } from "../../context/dataContext";
 import { useParams } from "react-router-dom";
-import { createBarChartDataSet } from "../helpers/createBarChartDataSet";
-import { dataConstants } from "../constants/Constants";
-import { getAllDaysDataValues } from "../helpers/getAllDaysDataValues";
+import { createBarChartDataSet } from "../../helpers/createBarChartDataSet";
+import { dataConstants } from "../../constants/Constants";
+import { getAllDaysDataValues } from "../../helpers/getAllDaysDataValues";
+import { BarChartContainer } from "./barChart.style";
 
 ChartJS.register(
 	CategoryScale,
@@ -65,9 +66,9 @@ const BarChart = () => {
 	};
 
 	return (
-		<div>
+		<BarChartContainer>
 			<Bar options={options} data={data} />
-		</div>
+		</BarChartContainer>
 	);
 };
 

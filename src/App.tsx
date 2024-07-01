@@ -1,15 +1,17 @@
 import { Route, Routes } from "react-router-dom";
-import "./App.css";
-import HomePage from "./pages/HomePage";
-import DeveloperStats from "./pages/DeveloperStats";
+import HomePage from "./pages/homePage/HomePage";
+import DeveloperStats from "./pages/developerStats/DeveloperStats";
+import { AppContainer, MainContainer } from "./App.style";
 
 function App() {
 	return (
 		<>
-			<Routes>
-				<Route path="/" element={<HomePage />} />
-				<Route path="/developerStats/:user" element={<DeveloperStats />} />
-			</Routes>
+			<MainContainer>
+				<Routes>
+					<Route path="/" element={<HomePage />} />
+					<Route path="/developerStats/:user" element={<DeveloperStats />} />
+				</Routes>
+			</MainContainer>
 		</>
 	);
 }
