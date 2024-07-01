@@ -20,4 +20,4 @@ Preview Link : https://dev-stats-ten.vercel.app/
 
 ## Demo
 
-![devstats demo](./src/frontend/assets/Dev_stats.gif)
+![devstats demo](./src/assets/Dev_stats.gif)
