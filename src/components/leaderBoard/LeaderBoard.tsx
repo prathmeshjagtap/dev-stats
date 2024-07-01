@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { FC, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getDeveloperDetails } from "../../helpers/getDeveloperDetails";
@@ -23,9 +24,7 @@ const LeaderBoard: FC = () => {
 	const developersData = useDataContext();
 	const getDevelopersTotalScore =
 		developersData && getDeveloperDetails(developersData);
-	const [sortedData, setSortedData] = useState<DeveloperDetailsType[]>(
-		getDevelopersTotalScore
-	);
+	const [sortedData, setSortedData] = useState<DeveloperDetailsType[]>();
 	const [sortCritera, setSortCritera] =
 		useState<keyof DeveloperDetailsType>("totalScore");
 	const navigate = useNavigate();

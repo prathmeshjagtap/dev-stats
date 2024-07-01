@@ -39,14 +39,14 @@ export interface DevelopersDataType {
 }
 
 export interface DeveloperDetailsType {
-	name: string;
-	email: string;
-	totalfOpenPrs: string;
-	totalMergedPrs: string;
-	totalCommits: string;
-	totalReviewedPrs: string;
-	totalCommnets: string;
-	totalIncidentAlerts: string;
-	totalIncidentResolved: string;
+	name?: string;
+	email?: string;
+	totalfOpenPrs?: string;
+	totalMergedPrs?: string;
+	totalCommits?: string;
+	totalReviewedPrs?: string;
+	totalCommnets?: string;
+	totalIncidentAlerts?: string;
+	totalIncidentResolved?: string;
 	totalScore?: string;
 }

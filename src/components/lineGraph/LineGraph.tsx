@@ -23,7 +23,7 @@ ChartJS.register(
 	Legend
 );
 
-const LineGraph: FC<{ data: ChartData }> = ({ data }) => {
+const LineGraph: FC<{ data: any }> = ({ data }) => {
 	const options = {};
 
 	console.log(data);

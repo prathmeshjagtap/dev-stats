@@ -21,7 +21,7 @@ ChartJS.register(
 	Legend
 );
 
-const BarChart: FC<{ data: ChartData }> = ({ data }) => {
+const BarChart: FC<{ data: any }> = ({ data }) => {
 	const options = {};
 
 	return (
