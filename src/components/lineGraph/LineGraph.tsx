@@ -10,14 +10,8 @@ import {
 	Tooltip,
 	Legend,
 } from "chart.js";
-import { useParams } from "react-router-dom";
-import { dataConstants } from "../../constants/Constants";
-import { createLineChartDataSet } from "../../helpers/createLineChartDataSet";
-import { useDataContext } from "../../context/dataContext";
-import { getLabelsData } from "../../helpers/getLabelsData";
-import { getAllDaysDataValues } from "../../helpers/getAllDaysDataValues";
 import { LineGraphContainer } from "./lineGraph.style";
-import { PrimaryButton, SecondaryButton } from "../../typography/styles";
+import { ChartData } from "../../pages/developerStats/DeveloperStats";
 
 ChartJS.register(
 	CategoryScale,
@@ -29,50 +23,10 @@ ChartJS.register(
 	Legend
 );
 
-const LineGraph: FC<{}> = () => {
-	const { user } = useParams();
-	const developersData = useDataContext();
-
-	const allDaysDataValues = getAllDaysDataValues(user, developersData);
+const LineGraph: FC<{ data: ChartData }> = ({ data }) => {
 	const options = {};
 
-	const labels = getLabelsData(developersData, user);
-	const data = {
-		labels: labels,
-		datasets: [
-			{
-				...createLineChartDataSet(allDaysDataValues, dataConstants.PR_OPEN),
-			},
-			{
-				...createLineChartDataSet(allDaysDataValues, dataConstants.PR_MERGED),
-			},
-			{
-				...createLineChartDataSet(allDaysDataValues, dataConstants.COMMITS),
-			},
-			{
-				...createLineChartDataSet(allDaysDataValues, dataConstants.PR_REVIEWED),
-			},
-			{
-				...createLineChartDataSet(
-					allDaysDataValues,
-					dataConstants.PR_COMMNENTS
-				),
-			},
-			{
-				...createLineChartDataSet(
-					allDaysDataValues,
-					dataConstants.INCIDENT_ALERTS
-				),
-			},
-			{
-				...createLineChartDataSet(
-					allDaysDataValues,
-					dataConstants.INCIDENTS_RESOLVED
-				),
-			},
-		],
-	};
-
+	console.log(data);
 	return (
 		<LineGraphContainer>
 			<Line options={options} data={data} />

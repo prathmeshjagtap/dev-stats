@@ -1,6 +1,6 @@
 import { DayWiseActivityItemsType } from "../typings";
 
-const createLineChartDataSet = (
+const createDataSet = (
 	dataToFilter: DayWiseActivityItemsType[] | undefined,
 	label: string
 ) => {
@@ -9,7 +9,8 @@ const createLineChartDataSet = (
 		label: filteredData && filteredData[0].label,
 		data: filteredData && filteredData.map((values) => values.count),
 		borderColor: filteredData && filteredData[0].fillColor,
+		backgroundColor: filteredData && filteredData[0].fillColor,
 	};
 };
 
-export { createLineChartDataSet };
+export { createDataSet };

@@ -8,13 +8,9 @@ import {
 	Tooltip,
 	Legend,
 } from "chart.js";
-import { getLabelsData } from "../../helpers/getLabelsData";
-import { useDataContext } from "../../context/dataContext";
-import { useParams } from "react-router-dom";
-import { createBarChartDataSet } from "../../helpers/createBarChartDataSet";
-import { dataConstants } from "../../constants/Constants";
-import { getAllDaysDataValues } from "../../helpers/getAllDaysDataValues";
 import { BarChartContainer } from "./barChart.style";
+import { FC } from "react";
+import { ChartData } from "../../pages/developerStats/DeveloperStats";
 
 ChartJS.register(
 	CategoryScale,
@@ -25,45 +21,8 @@ ChartJS.register(
 	Legend
 );
 
-const BarChart = () => {
-	const { user } = useParams();
-	const developersData = useDataContext();
+const BarChart: FC<{ data: ChartData }> = ({ data }) => {
 	const options = {};
-
-	const labels = getLabelsData(developersData, user);
-	const allDaysDataValues = getAllDaysDataValues(user, developersData);
-	const data = {
-		labels: labels,
-		datasets: [
-			{
-				...createBarChartDataSet(allDaysDataValues, dataConstants.PR_OPEN),
-			},
-			{
-				...createBarChartDataSet(allDaysDataValues, dataConstants.PR_MERGED),
-			},
-			{
-				...createBarChartDataSet(allDaysDataValues, dataConstants.COMMITS),
-			},
-			{
-				...createBarChartDataSet(allDaysDataValues, dataConstants.PR_REVIEWED),
-			},
-			{
-				...createBarChartDataSet(allDaysDataValues, dataConstants.PR_COMMNENTS),
-			},
-			{
-				...createBarChartDataSet(
-					allDaysDataValues,
-					dataConstants.INCIDENT_ALERTS
-				),
-			},
-			{
-				...createBarChartDataSet(
-					allDaysDataValues,
-					dataConstants.INCIDENTS_RESOLVED
-				),
-			},
-		],
-	};
 
 	return (
 		<BarChartContainer>
