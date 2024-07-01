@@ -11,7 +11,6 @@ import {
 	Legend,
 } from "chart.js";
 import { LineGraphContainer } from "./lineGraph.style";
-import { ChartData } from "../../pages/developerStats/DeveloperStats";
 
 ChartJS.register(
 	CategoryScale,

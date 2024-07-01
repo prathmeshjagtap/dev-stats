@@ -24,7 +24,9 @@ const LeaderBoard: FC = () => {
 	const developersData = useDataContext();
 	const getDevelopersTotalScore =
 		developersData && getDeveloperDetails(developersData);
-	const [sortedData, setSortedData] = useState<DeveloperDetailsType[]>();
+	const [sortedData, setSortedData] = useState<DeveloperDetailsType[]>(
+		getDevelopersTotalScore
+	);
 	const [sortCritera, setSortCritera] =
 		useState<keyof DeveloperDetailsType>("totalScore");
 	const navigate = useNavigate();
